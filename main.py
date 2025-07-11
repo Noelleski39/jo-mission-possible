@@ -9,7 +9,7 @@ import webbrowser
 import random
 
 #--Lotto Number Generation Part--
-with open("data.json") as file:
+with open("data.json", "r") as file:
     DATA = json.load(file)
 
 class Numbers:
@@ -24,8 +24,13 @@ class Numbers:
         
         return prediction
     
-    def append_data(self, data):
-        pass
+    def append_data(self, data: list):
+        for n in data:
+            DATA[n-1] += 1
+        
+        with open("data.json", "w") as file:
+            json.dump(DATA, fp=file)
+            
 
 #----------GUI Part----------
 #--------TITLE SCREEN--------
