@@ -15,21 +15,21 @@ with open("data.json") as file:
 #--------TITLE SCREEN--------
 def play_music(): #bgmusic
     pygame.mixer.init()
-    pygame.mixer.music.load("music.mp3")
+    pygame.mixer.music.load("assets/audio/music.mp3")
     pygame.mixer.music.set_volume(0.15)
     pygame.mixer.music.play(-1) #4ever loop
 class LottoApp:
     def __init__(self, root):
         self.root = root
-        self.root.iconbitmap("logo.ico")
+        self.root.iconbitmap("assets/icons/logo.ico")
         self.root.title("Lotto Predictor") #name of window
         self.root.geometry("800x600") #pixelz
         self.root.resizable(False, False) #disable resizing window
-        self.scratch_sound = pygame.mixer.Sound("scratch.wav") #pre-loading ksi may delay
+        self.scratch_sound = pygame.mixer.Sound("assets/audio/scratch.wav") #pre-loading ksi may delay
         self.scratch_sound.set_volume(0.3)  
 
         #to load bg
-        bg = Image.open("background.jpg").resize((800, 600)).convert("RGBA")
+        bg = Image.open("assets/images/background.jpg").resize((800, 600)).convert("RGBA")
         black_bg = Image.new("RGBA", bg.size, (0, 0, 0, 255))
         blended = Image.blend(black_bg, bg, alpha=0.75)  #change num to change opacity
         self.bg_photo = ImageTk.PhotoImage(blended)
@@ -53,14 +53,14 @@ class LottoApp:
         self.canvas.tag_bind(self.music_credit, "<Leave>", lambda e: self.canvas.itemconfig(self.music_credit, fill="white"))
 
         #title txt img
-        original_image = Image.open("title.png")
+        original_image = Image.open("assets/images/title.png")
         resized_image = original_image.resize((500, 300))  #width,height
         self.title_image = ImageTk.PhotoImage(resized_image)
         self.canvas.create_image(400, 180, image=self.title_image, anchor="center")
 
         #scratch button: normal and pressed
-        self.lp_button_img = ImageTk.PhotoImage(Image.open("lp_button.png").resize((300, 150)))
-        self.lp_button_pressed_img = ImageTk.PhotoImage(Image.open("lp_button_scratched.png").resize((300, 150)))
+        self.lp_button_img = ImageTk.PhotoImage(Image.open("assets/images/lp_button.png").resize((300, 150)))
+        self.lp_button_pressed_img = ImageTk.PhotoImage(Image.open("assets/images/lp_button_scratched.png").resize((300, 150)))
         #the LP button
         self.predict_btn = self.canvas.create_image(400, 400, image=self.lp_button_img, anchor="center")
 
