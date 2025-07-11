@@ -6,10 +6,26 @@ import pygame
 import threading
 from PIL import ImageEnhance
 import webbrowser
+import random
 
 #--Lotto Number Generation Part--
 with open("data.json") as file:
     DATA = json.load(file)
+
+class Numbers:
+    def __init__(self):
+        pass
+
+    def generate(self):
+        prediction = set()
+        while len(prediction) < 6:
+            pick = random.choices(range(1, 59), DATA)[0]
+            prediction.add(pick)
+        
+        return prediction
+    
+    def append_data(self, data):
+        pass
 
 #----------GUI Part----------
 #--------TITLE SCREEN--------
